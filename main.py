@@ -23,3 +23,6 @@ while True:
             MTPDeviceLink.list_and_copy_mtp_devices()
         else:
             print("path is shit ", selectedPath)
+
+# todo: add display and refresh button for detected camera
+# todo: only copy when camera is found and target path exists
