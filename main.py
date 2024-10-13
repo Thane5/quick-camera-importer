@@ -38,6 +38,7 @@ while True:
     if event == "btn_checkCamera":
         MTPDeviceLink.find_camera()
         #print(MTPDeviceLink.currentCameraName)
+        #todo: run this check on start
         if MTPDeviceLink.currentCameraName == "":
             window["txt_camera"].update("No Camera Found", text_color="red")
             window["btn_copy"].update(disabled=True)
