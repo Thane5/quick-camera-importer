@@ -5,8 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickCameraImporter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Quick Camera Importer" 
+        Width="640" Height="320" 
+        MinWidth="640" MinHeight="320" 
+>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" /> <!-- Take available space before the button -->
+            <RowDefinition Height="*" /> <!-- Button takes only as much space as needed -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" /> <!-- Take available space after the button -->
+        </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" /> <!-- First column: TextBox takes remaining space -->
+            <ColumnDefinition Width="Auto" /> <!-- Second column: Button fits content -->
+        </Grid.ColumnDefinitions>
+
+        <!-- TextBox and Browse button layout -->
+        <TextBox 
+            x:Name="PathDisplay" 
+            HorizontalAlignment="Stretch" Margin="10"
+        />
+        <Button Grid.Column="1" 
+                x:Name="BtnBrowse" 
+                Content="Browse..." 
+                Click="OnCLick_BtnBrowse"
+                Height="30" Width="100" VerticalAlignment="Center" Margin="10" Padding="10,0" 
+        />
+
+        <!-- Copy Files button, vertically centered -->
+        <Button 
+            x:Name="BtnCopy"
+            Content="Copy Files Now" 
+            Click="OnClick_BtnCopy" 
+            Grid.Row="2" Grid.ColumnSpan="2"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Width="150" Height="30"
+            Style="{StaticResource AccentButtonStyle}" />
     </Grid>
 </Window>

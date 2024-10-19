@@ -1,13 +1,5 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using Microsoft.Win32;
 
 namespace QuickCameraImporter;
 
@@ -16,8 +8,26 @@ namespace QuickCameraImporter;
 /// </summary>
 public partial class MainWindow : Window
 {
+    OpenFolderDialog folderDialog = new OpenFolderDialog();
+    String path = "";
+        
     public MainWindow()
     {
         InitializeComponent();
+            
+    }
+
+    private void OnClick_BtnCopy(object sender, RoutedEventArgs e)
+    {
+        Console.WriteLine("Clicked");
+    }
+
+    private void OnCLick_BtnBrowse(object sender, RoutedEventArgs e)
+    {
+        if (folderDialog.ShowDialog() != true) return;
+        var folderName = folderDialog.FolderName;
+        // Do something with the result
+        Console.WriteLine("got a file " + folderName);
+        PathDisplay.Text = folderName;
     }
 }
