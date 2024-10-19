@@ -12,10 +12,15 @@
       <None Remove=".gitignore" />
       <None Remove="LICENSE" />
       <None Remove="README.md" />
+      <None Remove="Resources\appicon.ico" />
     </ItemGroup>
 
     <ItemGroup>
       <Compile Remove="AssemblyInfo.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Resources\appicon.ico" />
     </ItemGroup>
 
 </Project>
