@@ -12,10 +12,8 @@
     <!-- MAIN GRID -->
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -30,17 +28,17 @@
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            Margin="0,0,0,0"
             Padding="16,8,16,8"
             Background="{DynamicResource LayerFillColorDefaultBrush}"
             BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
             BorderThickness="1"
-            CornerRadius="8,8,8,8">
+            CornerRadius="8,8,8,8"
+            >
             
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -54,12 +52,14 @@
                            VerticalAlignment="Center"
                            Style="{StaticResource BodyTextBlockStyle}"
                            Foreground="{StaticResource TextFillColorSecondaryBrush}"
+                           Margin="3"
                 />
                 <TextBlock Grid.Row="0" Grid.Column="1" 
                            Text="Fujifilm X-T30" 
                            VerticalAlignment="Center" HorizontalAlignment="Center"
                            Style="{StaticResource BodyStrongTextBlockStyle}"
                            Foreground="LimeGreen"
+                           Margin="3"
                 />
                 <Button Grid.Row="0" Grid.Column="2" 
                         x:Name="BtnCheck" 
@@ -68,19 +68,23 @@
                         Click="OnCLick_BtnCheck"
                         Width="Auto" Height="32"  
                         VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                        Margin="3"
                         
                 />
         
                 <!-- PATH ROW -->
                 <TextBlock Grid.Row="1" Grid.Column="0" 
                            Text="Target Folder:" 
-                           VerticalAlignment="Center"
+                           VerticalAlignment="Center" 
+                           Margin="3"
                            Style="{StaticResource BodyTextBlockStyle}"
-                           Foreground="{StaticResource TextFillColorSecondaryBrush}"
+                           Foreground="{StaticResource TextFillColorSecondaryBrush}" 
                 />
                 <TextBox Grid.Row="1" Grid.Column="1"  
                          x:Name="PathDisplay" 
-                         HorizontalAlignment="Stretch" Margin="6"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Center"
+                         Margin="3"
                 />
                 <Button Grid.Row="1" Grid.Column="2" 
                         x:Name="BtnBrowse" 
@@ -90,12 +94,13 @@
                         Height="32"
                         Width="Auto"
                         HorizontalAlignment="Stretch"
+                        Margin="3"
                 />
             </Grid>
         </Border>
         
         <!-- COPY ROW -->
-        <Button Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0" 
+        <Button Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" 
                 x:Name="BtnCopy"
                 Content="Copy Files Now" 
                 Click="OnClick_BtnCopy" 
@@ -104,7 +109,7 @@
                 Width="150"
                 Style="{StaticResource AccentButtonStyle}"
                 />
-        <TextBlock Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" 
+        <TextBlock Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0" 
                    Text="Nothing Copied yet"
                    Foreground="{StaticResource TextFillColorSecondaryBrush}"
         />
