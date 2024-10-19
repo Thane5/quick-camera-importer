@@ -30,4 +30,9 @@ public partial class MainWindow : Window
         Console.WriteLine("got a file " + folderName);
         PathDisplay.Text = folderName;
     }
+
+    private void OnCLick_BtnCheck(object sender, RoutedEventArgs e)
+    {
+        //throw new NotImplementedException();
+    }
 }

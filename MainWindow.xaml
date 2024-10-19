@@ -8,9 +8,10 @@
         Title="Quick Camera Importer" 
         Width="640" Height="320" 
         MinWidth="640" MinHeight="320" 
->
+        >
     <Grid Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" /> <!-- Take available space before the button -->
             <RowDefinition Height="Auto" /> <!-- Take available space before the button -->
             <RowDefinition Height="*" /> <!-- Button takes only as much space as needed -->
             <RowDefinition Height="Auto"/>
@@ -18,31 +19,52 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" /> <!-- First column: TextBox takes remaining space -->
+            <ColumnDefinition Width="Auto" /> <!-- First column: TextBox takes remaining space -->
+            <ColumnDefinition Width="*" /> <!-- Second column: Button fits content -->
             <ColumnDefinition Width="Auto" /> <!-- Second column: Button fits content -->
         </Grid.ColumnDefinitions>
 
-        <!-- TextBox and Browse button layout -->
-        <TextBox 
-            x:Name="PathDisplay" 
-            HorizontalAlignment="Stretch" Margin="10"
-        />
-        <Button Grid.Column="1" 
+        <!-- CONNECTION ROW -->
+        <Label Grid.Row="0" Grid.Column="0" 
+               Content="Camera Status" 
+               VerticalAlignment="Center"
+                />
+        <Label Grid.Row="0" Grid.Column="1" 
+               Content="No Camera Found" 
+               VerticalAlignment="Center" HorizontalAlignment="Center"
+                />
+        <Button Grid.Row="0" Grid.Column="2" 
+                x:Name="BtnCheck" 
+                Content="Check Connection" 
+                Click="OnCLick_BtnCheck"
+                Width="135" Height="30"  VerticalAlignment="Center" Margin="10" Padding="10,0" 
+                />
+        
+        <!-- PATH ROW -->
+        <Label Grid.Row="1" Grid.Column="0" 
+               Content="Target Folder" 
+               VerticalAlignment="Center"
+               />
+        <TextBox Grid.Row="1" Grid.Column="1"  
+                 x:Name="PathDisplay" 
+                 HorizontalAlignment="Stretch" Margin="10"
+                />
+        <Button Grid.Row="1" Grid.Column="2" 
                 x:Name="BtnBrowse" 
                 Content="Browse..." 
                 Click="OnCLick_BtnBrowse"
-                Height="30" Width="100" VerticalAlignment="Center" Margin="10" Padding="10,0" 
-        />
+                Width="135" Height="30"  VerticalAlignment="Center" Margin="10" Padding="10,0" 
+                />
 
-        <!-- Copy Files button, vertically centered -->
-        <Button 
-            x:Name="BtnCopy"
-            Content="Copy Files Now" 
-            Click="OnClick_BtnCopy" 
-            Grid.Row="2" Grid.ColumnSpan="2"
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center" 
-            Width="150" Height="30"
-            Style="{StaticResource AccentButtonStyle}" />
+        <!-- COPY ROW -->
+        <Button Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" 
+                x:Name="BtnCopy"
+                Content="Copy Files Now" 
+                Click="OnClick_BtnCopy" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Width="150" Height="30"
+                Style="{StaticResource AccentButtonStyle}"
+                />
     </Grid>
 </Window>
