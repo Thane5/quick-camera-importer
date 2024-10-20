@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using System.Windows.Media;
+using MediaDevices;
 using Microsoft.Win32;
 
 namespace QuickCameraImporter;
@@ -8,14 +10,41 @@ namespace QuickCameraImporter;
 /// </summary>
 public partial class MainWindow : Window
 {
-    OpenFolderDialog folderDialog = new OpenFolderDialog();
+    public static MainWindow mainWindow;
+    public static DeviceLink deviceLink = new();
+    OpenFolderDialog folderDialog = new();
     String path = "";
+    
         
+    // STARTUP LOGIC
+    
     public MainWindow()
     {
         InitializeComponent();
-            
+        mainWindow = this;
+        CheckCamera();
     }
+
+    private void CheckCamera()
+    {
+        var camera = deviceLink.FindCamera();
+        string statusDisplay;
+        if (camera!= null)
+        {
+            Console.WriteLine();
+            statusDisplay = camera.Manufacturer + " " + camera.FriendlyName;
+            cameraStatus.Text = statusDisplay;
+            cameraStatus.Foreground = Brushes.LimeGreen;
+        }
+        else
+        {
+            statusDisplay = "No Camera Found";
+            cameraStatus.Text = statusDisplay;
+            cameraStatus.Foreground = Brushes.Orange;
+        }
+    }
+    
+    // GUI EVENTS
 
     private void OnClick_BtnCopy(object sender, RoutedEventArgs e)
     {
@@ -33,6 +62,6 @@ public partial class MainWindow : Window
 
     private void OnCLick_BtnCheck(object sender, RoutedEventArgs e)
     {
-        //throw new NotImplementedException();
+        CheckCamera();
     }
 }

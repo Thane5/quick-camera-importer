@@ -28,7 +28,7 @@
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            Padding="16,8,16,8"
+            Padding="18,12,18,12"
             Background="{DynamicResource LayerFillColorDefaultBrush}"
             BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
             BorderThickness="1"
@@ -55,10 +55,11 @@
                            Margin="3"
                 />
                 <TextBlock Grid.Row="0" Grid.Column="1" 
-                           Text="Fujifilm X-T30" 
+                           x:Name="cameraStatus"
+                           Text="No Camera Found"
                            VerticalAlignment="Center" HorizontalAlignment="Center"
                            Style="{StaticResource BodyStrongTextBlockStyle}"
-                           Foreground="LimeGreen"
+                           Foreground="Red"
                            Margin="3"
                 />
                 <Button Grid.Row="0" Grid.Column="2" 

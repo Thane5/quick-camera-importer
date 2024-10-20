@@ -23,4 +23,8 @@
       <Resource Include="Resources\appicon.ico" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MediaDevices" Version="1.10.0" />
+    </ItemGroup>
+
 </Project>
