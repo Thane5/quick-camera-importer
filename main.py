@@ -36,6 +36,7 @@ while True:
         exit(0)
 
     if event == "btn_checkCamera":
+        print("checking camera")
         MTPDeviceLink.find_camera()
         #print(MTPDeviceLink.currentCameraName)
         #todo: run this check on start
@@ -48,7 +49,8 @@ while True:
 
     if event == sg.WIN_CLOSED or event=="Exit":
         break
-    elif event == "Copy Now":
+    if event == "btn_copy":
+        print("copying now")
         selectedPath = values["-TextField-"]
 
         if os.path.exists(selectedPath):
