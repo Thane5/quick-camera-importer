@@ -31,7 +31,6 @@ public partial class MainWindow : Window
         string statusDisplay;
         if (camera!= null)
         {
-            Console.WriteLine();
             statusDisplay = camera.Manufacturer + " " + camera.FriendlyName;
             cameraStatus.Text = statusDisplay;
             cameraStatus.Foreground = Brushes.LimeGreen;
