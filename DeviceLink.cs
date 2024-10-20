@@ -40,7 +40,7 @@ public class DeviceLink
         }
         
         // Return the first camera as the current camera
-        Console.WriteLine("Using Camera: " + cameras.First().Manufacturer +" "+ cameras.First().FriendlyName);
+        Console.WriteLine("Selected Camera: " + cameras.First().Manufacturer +" "+ cameras.First().FriendlyName);
         return cameras.First();
     }
 }

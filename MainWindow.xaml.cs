@@ -14,6 +14,7 @@ public partial class MainWindow : Window
 {
     public static MainWindow mainWindow;
     public static DeviceLink deviceLink = new();
+    public static FileHandler fileHandler = new();
     OpenFolderDialog folderDialog = new();
 
     private MediaDevice? camera;
@@ -28,7 +29,7 @@ public partial class MainWindow : Window
         mainWindow = this;
 
         LoadSettings();
-        UpdateCopyButton();
+        CheckConditions();
     }
 
     private bool CameraOkay()
@@ -58,19 +59,16 @@ public partial class MainWindow : Window
         }
         return false;
     }
-    
 
-    private void UpdateCopyButton()
+    private bool CheckConditions()
     {
         if (CameraOkay() && PathOkay())
         {
             BtnCopy.IsEnabled = true;
+            return true;
         }
-        else
-        {
-            BtnCopy.IsEnabled = false;
-        }
-            
+        BtnCopy.IsEnabled = false;
+        return false;
     }
 
     private void LoadSettings()
@@ -86,7 +84,14 @@ public partial class MainWindow : Window
 
     private void OnClick_BtnCopy(object sender, RoutedEventArgs e)
     {
-        Console.WriteLine("Clicked");
+        if (CheckConditions())
+        {
+            fileHandler.CopyFiles(camera, path);
+        }
+        else
+        {
+            Console.WriteLine("Unable to copy files.");
+        }
     }
 
     private void OnCLick_BtnBrowse(object sender, RoutedEventArgs e)
@@ -107,11 +112,11 @@ public partial class MainWindow : Window
 
     private void OnCLick_BtnCheck(object sender, RoutedEventArgs e)
     {
-        UpdateCopyButton();
+        CheckConditions();
     }
 
     private void OnChange_PathDisplay(object sender, TextChangedEventArgs e)
     {
-        UpdateCopyButton();
+        CheckConditions();
     }
 }
