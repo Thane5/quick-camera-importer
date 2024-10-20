@@ -1,14 +1,18 @@
-﻿using System.Windows.Media.Media3D;
-using MediaDevices;
+﻿using MediaDevices;
 
 namespace QuickCameraImporter;
 
 public class DeviceLink
 {
-    public static DeviceLink deviceLink;
-    
     public MediaDevice? FindCamera()
     {
+        // native api
+        // IPortableDeviceManager manager = new PortableDeviceManager();
+        // manager.RefreshDeviceList();
+        // manager.GetDevices();
+        // Console.WriteLine(manager.PortableDevices.First().DeviceFriendlyName);
+        
+        //--------------------------------------------------
         var devices = MediaDevice.GetDevices();
         List<MediaDevice> cameras = [];
         
