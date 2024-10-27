@@ -1,14 +1,10 @@
-import tkinter as tk
-from hidpi_tk import DPIAwareTk
-from tkinter import ttk, filedialog, messagebox
 import os
-import MTPDeviceLink
-import tkinter
-from tkinter import ttk
+import tkinter as tk
+from tkinter import ttk, filedialog, messagebox
+import sv_ttk
 import pywinstyles, sys
 
-import sv_ttk
-
+import MTPDeviceLink
 
 class QuickCameraImporterApp:
     def __init__(self, root):
@@ -22,6 +18,13 @@ class QuickCameraImporterApp:
         sv_ttk.use_dark_theme()
 
         self.create_widgets()
+
+        # Add a close event handler to ensure proper cleanup
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+    def on_closing(self):
+        self.root.quit()
+        self.root.destroy()
 
     def create_widgets(self):
         # Camera Panel
@@ -99,9 +102,12 @@ def apply_theme_to_titlebar(root):
         root.wm_attributes("-alpha", 0.99)
         root.wm_attributes("-alpha", 1)
 
-
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = QuickCameraImporterApp(root)
-    apply_theme_to_titlebar(root)
-    root.mainloop()
+    try:
+        root = tk.Tk()
+        app = QuickCameraImporterApp(root)
+        apply_theme_to_titlebar(root)
+        root.mainloop()
+    except KeyboardInterrupt:
+        pass
+
