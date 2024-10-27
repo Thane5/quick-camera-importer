@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.4" author="PygubuDesigner 0.39.3">
+  <project>
+    <settings />
+    <customwidgets />
+  </project>
+  <object class="tk.Toplevel" id="mainwindow">
+    <property name="height">200</property>
+    <property name="minsize">640|320</property>
+    <property name="resizable">both</property>
+    <property name="title" translatable="yes">Hello World App</property>
+    <property name="width">200</property>
+    <child>
+      <object class="ttk.Frame" id="frame3">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="expand">false</property>
+          <property name="fill">x</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="ttk.Label" id="label3">
+            <property name="state">normal</property>
+            <property name="text" translatable="yes">Selected Camera:</property>
+            <layout manager="pack">
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="label_camerastatus" named="True">
+            <property name="justify">center</property>
+            <property name="state">normal</property>
+            <property name="text" translatable="yes">Status</property>
+            <property name="textvariable">string:var_camerastatus</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button2">
+            <property name="text" translatable="yes">Refresh</property>
+            <layout manager="pack">
+              <property name="ipadx">0</property>
+              <property name="ipady">0</property>
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame2">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="expand">false</property>
+          <property name="fill">x</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="ttk.Label" id="label2">
+            <property name="state">normal</property>
+            <property name="text" translatable="yes">Target Folder:</property>
+            <layout manager="pack">
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Entry" id="entry1">
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">x</property>
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button1">
+            <property name="text" translatable="yes">Browse</property>
+            <layout manager="pack">
+              <property name="ipadx">0</property>
+              <property name="ipady">0</property>
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="mainframe">
+        <property name="height">200</property>
+        <property name="padding">20</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="expand">true</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="ttk.Button" id="button3">
+            <property name="style">Accent.TButton</property>
+            <property name="text" translatable="yes">Copy Now</property>
+            <property name="width">22</property>
+            <layout manager="pack">
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
