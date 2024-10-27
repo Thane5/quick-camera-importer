@@ -13,6 +13,11 @@ PROJECT_UI = PROJECT_PATH / "MainWindow.ui"
 
 builder = pygubu.Builder()
 
+#todo: skip existing images
+#todo: remember last used path
+#todo: in target folder, save a file with a list of images that were copied
+
+
 class QuickCameraImporterApp:
 
     def __init__(self, master=None):
