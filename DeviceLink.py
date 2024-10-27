@@ -21,6 +21,7 @@ def find_camera():
 
     # Iterate over available devices and process only camera devices
     for device in devices:
+        print("Found device: ", device.Properties("Manufacturer").Value + " " + device.Properties("Name").Value)
         device_type = device.Properties("Type").Value
 
         # all my cameras return device type 131072, so I will check for that

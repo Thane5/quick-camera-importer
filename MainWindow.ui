@@ -32,6 +32,7 @@
         </child>
         <child>
           <object class="ttk.Label" id="label_camerastatus" named="True">
+            <property name="font">{Segoe UI Semibold} 12 {bold}</property>
             <property name="justify">center</property>
             <property name="state">normal</property>
             <property name="text" translatable="yes">Status</property>
@@ -45,7 +46,9 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Button" id="button2">
+          <object class="ttk.Button" id="btn_refresh" named="True">
+            <property name="command" type="command" cbtype="simple">btn_refresh_clicked</property>
+            <property name="takefocus">false</property>
             <property name="text" translatable="yes">Refresh</property>
             <layout manager="pack">
               <property name="ipadx">0</property>
@@ -79,7 +82,7 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Entry" id="entry1">
+          <object class="ttk.Entry" id="path_entry">
             <layout manager="pack">
               <property name="expand">true</property>
               <property name="fill">x</property>
@@ -90,7 +93,9 @@
           </object>
         </child>
         <child>
-          <object class="ttk.Button" id="button1">
+          <object class="ttk.Button" id="btn_browse" named="True">
+            <property name="command" type="command" cbtype="simple">btn_browse_clicked</property>
+            <property name="takefocus">false</property>
             <property name="text" translatable="yes">Browse</property>
             <layout manager="pack">
               <property name="ipadx">0</property>
@@ -110,14 +115,20 @@
         <property name="width">200</property>
         <layout manager="pack">
           <property name="expand">true</property>
+          <property name="fill">both</property>
           <property name="side">top</property>
         </layout>
         <child>
-          <object class="ttk.Button" id="button3">
+          <object class="ttk.Button" id="btn_copy" named="True">
+            <property name="command" type="command" cbtype="simple">btn_copy_clicked</property>
+            <property name="state">disabled</property>
             <property name="style">Accent.TButton</property>
+            <property name="takefocus">false</property>
             <property name="text" translatable="yes">Copy Now</property>
             <property name="width">22</property>
             <layout manager="pack">
+              <property name="anchor">center</property>
+              <property name="expand">true</property>
               <property name="side">top</property>
             </layout>
           </object>
