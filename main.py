@@ -7,6 +7,7 @@ import sv_ttk
 import pywinstyles, sys
 
 import DeviceLink
+import ConfigManager
 
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "MainWindow.ui"
@@ -14,7 +15,6 @@ PROJECT_UI = PROJECT_PATH / "MainWindow.ui"
 builder = pygubu.Builder()
 
 #todo: idea: reverse list of files, so newest are copied first
-#todo: skip existing images
 #todo: remember last used path
 #todo: in target folder, save a file with a list of images that were copied
 
@@ -40,6 +40,7 @@ class QuickCameraImporterApp:
         self.label_camerastatus = builder.get_object('label_camerastatus')
         self.label_camerastatus_text = builder.get_variable('var_camerastatus')
         self.btn_copy = builder.get_object('btn_copy')
+        self.btn_copy_text = builder.get_variable('var_btn_copy_text')
         self.path_entry = builder.get_object('path_entry')
 
         if self.camera_okay():
@@ -92,12 +93,28 @@ class QuickCameraImporterApp:
             self.path_entry.delete(0, tk.END)
             self.path_entry.insert(0, selected_path)
 
-
     def copy_now(self):
         self.update_ui()
         selected_path = self.path_entry.get()
         print("selected_path:", selected_path)
-        DeviceLink.copy_files(DeviceLink.currentDevice, selected_path)
+
+        # Store the original button text
+        original_text = self.btn_copy_text.get()
+
+        # Change button text to "Copying..."
+        self.btn_copy_text.set("Copying...")
+        self.btn_copy.state(["disabled"])  # Disable the button while copying
+        self.mainwindow.update()  # Force update of the UI
+
+        try:
+            # Perform the file copying
+            DeviceLink.copy_files(DeviceLink.currentDevice, selected_path)
+            ConfigManager.set_default_path(selected_path)
+        finally:
+            # Change button text back to original and re-enable it
+            self.btn_copy_text.set(original_text)
+            self.btn_copy.state(["!disabled"])
+            self.mainwindow.update()  # Force update of the UI again
 
 
 def open_main_window(self=None, master=None):
@@ -128,9 +145,9 @@ def open_main_window(self=None, master=None):
 
     # set the default path to the user's Pictures folder
     self.path_entry = builder.get_object('path_entry')
-    pictures_folder = os.path.join(os.path.expanduser("~"), "Pictures")
     self.path_entry.delete(0, tk.END)
-    self.path_entry.insert(0, pictures_folder)
+    self.path_entry.insert(0, ConfigManager.get_default_path())
+    print(ConfigManager.get_default_path())
 
 if __name__ == "__main__":
     try:

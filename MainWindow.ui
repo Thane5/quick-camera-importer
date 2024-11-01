@@ -126,6 +126,7 @@
             <property name="takefocus">false</property>
             <property name="text" translatable="yes">Copy Now</property>
             <property name="width">22</property>
+            <property name="textvariable">string:var_btn_copy_text</property>
             <layout manager="pack">
               <property name="anchor">center</property>
               <property name="expand">true</property>

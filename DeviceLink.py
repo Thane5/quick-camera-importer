@@ -46,12 +46,7 @@ def copy_files(camera, target_folder):
         try:
             print(camera.Items.Count, "items found")
 
-            for item in camera.Items:
-                # Extract relevant properties and copy files
-                item_name = item.Properties("Item Name").Value if item.Properties.Exists("Item Name") else "Unnamed Item"
-                file_extension = item.Properties("Filename extension").Value if item.Properties.Exists("Filename extension") else "Unknown"
-                item_size = item.Properties("Item Size").Value if item.Properties.Exists("Item Size") else "Unknown size"
-
+            for file in reversed(camera.Items):
                 # Copy the file to the specified folder
                 FileHandler.copy_and_organize_file(file, target_folder)
         except AttributeError as e:
