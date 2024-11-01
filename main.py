@@ -14,8 +14,7 @@ PROJECT_UI = PROJECT_PATH / "MainWindow.ui"
 
 builder = pygubu.Builder()
 
-#todo: idea: reverse list of files, so newest are copied first
-#todo: remember last used path
+
 #todo: in target folder, save a file with a list of images that were copied
 
 
