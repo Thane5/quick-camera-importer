@@ -8,7 +8,7 @@ import win32con
 from datetime import datetime
 
 
-def get_timestamp(file):
+def get_timestamp_for_path(file):
     try:
         if file.Properties.Exists("Item Time Stamp"):
             timestamp = file.Properties("Item Time Stamp").Value
@@ -19,7 +19,8 @@ def get_timestamp(file):
         print(f"Error reading date from item: {e}")
     return None
 
-def corrected_unix_timestamp(file):
+
+def get_timestamp_minus_offset(file):
     try:
         if file.Properties.Exists("Item Time Stamp"):
             timestamp = file.Properties("Item Time Stamp").Value
@@ -39,7 +40,6 @@ def corrected_unix_timestamp(file):
     except Exception as e:
         print(f"Error reading date from item: {e}")
     return None
-
 
 
 def set_file_times(file_path, timestamp):
@@ -77,7 +77,7 @@ def copy_and_organize_file(file, base_destination_folder):
         "Filename extension") else "Unknown"
 
     # Get the date from EXIF metadata on the device itself
-    date_and_time = get_timestamp(file)
+    date_and_time = get_timestamp_for_path(file)
     if not date_and_time:
         print(f"Skipping {file_name}.{file_extension}: Date not available.")
         return
@@ -100,7 +100,7 @@ def copy_and_organize_file(file, base_destination_folder):
         file.Transfer().SaveFile(final_path)
         print(f"Copied: {final_path}", ". Reported timeanddate: ", date_and_time)
 
-        timestamp = corrected_unix_timestamp(file)
+        timestamp = get_timestamp_minus_offset(file)
         # Set the file's creation and modified times
         set_file_times(final_path, timestamp)
 
