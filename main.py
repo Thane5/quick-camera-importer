@@ -8,13 +8,14 @@ import pywinstyles, sys
 
 import DeviceLink
 import ConfigManager
+import FileHandler
 
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "MainWindow.ui"
 
 builder = pygubu.Builder()
 
-
+# pyinstaller command: # pyinstaller command: pyinstaller --onefile --noconsole --add-data "MainWindow.ui;." --add-data "appicon.ico;." --collect-data sv_ttk --name quickcameraimporter main.py
 #todo: in target folder, save a file with a list of images that were copied
 
 
@@ -24,7 +25,7 @@ class QuickCameraImporterApp:
         open_main_window(self, master)
         self.update_ui()
 
-
+    # Button Events
     def btn_refresh_clicked(self):
         self.update_ui()
 
@@ -36,11 +37,16 @@ class QuickCameraImporterApp:
 
 
     def update_ui(self):
+        # get references to the UI elements
         self.label_camerastatus = builder.get_object('label_camerastatus')
         self.label_camerastatus_text = builder.get_variable('var_camerastatus')
         self.btn_copy = builder.get_object('btn_copy')
         self.btn_copy_text = builder.get_variable('var_btn_copy_text')
         self.path_entry = builder.get_object('path_entry')
+        self.label_appstatus_text = builder.get_variable('var_appstatus')
+
+        # clear the status display
+        self.label_appstatus_text.set("")
 
         if self.camera_okay():
             self.label_camerastatus_text.set(DeviceLink.currentCameraName)
@@ -61,12 +67,6 @@ class QuickCameraImporterApp:
         self.btn_copy.state(["!disabled"])
 
 
-    def check_conditions(self):
-        if self.camera_okay() and self.path_okay():
-            self.btn_copy.state(["!disabled"])
-        else:
-            self.btn_copy.state(["disabled"])
-
     def camera_okay(self):
         if DeviceLink.find_camera() is None:
             return False
@@ -77,11 +77,11 @@ class QuickCameraImporterApp:
         selected_path = self.path_entry.get()
 
         if os.path.exists(selected_path):
-            print("Path is good!")
+            print("Selected path is good!")
             DeviceLink.baseDir = selected_path
             return True
 
-        print("Path does not exist:", selected_path)
+        print("Selected path does not exist:", selected_path)
         messagebox.showerror("Error", f"Invalid path: {selected_path}")
         return False
 
@@ -91,6 +91,7 @@ class QuickCameraImporterApp:
         if selected_path:
             self.path_entry.delete(0, tk.END)
             self.path_entry.insert(0, selected_path)
+
 
     def copy_now(self):
         self.update_ui()
@@ -105,6 +106,10 @@ class QuickCameraImporterApp:
         self.btn_copy.state(["disabled"])  # Disable the button while copying
         self.mainwindow.update()  # Force update of the UI
 
+        # Reset some variables
+        FileHandler.copy_count = 0
+        FileHandler.skip_count = 0
+
         try:
             # Perform the file copying
             DeviceLink.copy_files(DeviceLink.currentDevice, selected_path)
@@ -114,6 +119,11 @@ class QuickCameraImporterApp:
             self.btn_copy_text.set(original_text)
             self.btn_copy.state(["!disabled"])
             self.mainwindow.update()  # Force update of the UI again
+
+            app_status = f"{FileHandler.copy_count} files copied, {FileHandler.skip_count} files skipped."
+            print(app_status)
+            self.label_appstatus_text.set(str(app_status))
+
 
 
 def open_main_window(self=None, master=None):
@@ -146,7 +156,6 @@ def open_main_window(self=None, master=None):
     self.path_entry = builder.get_object('path_entry')
     self.path_entry.delete(0, tk.END)
     self.path_entry.insert(0, ConfigManager.get_default_path())
-    print(ConfigManager.get_default_path())
 
 if __name__ == "__main__":
     try:

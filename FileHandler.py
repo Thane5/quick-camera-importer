@@ -7,6 +7,8 @@ import win32file
 import win32con
 from datetime import datetime
 
+copy_count = 0
+skip_count = 0
 
 def get_timestamp_for_path(file):
     try:
@@ -71,7 +73,10 @@ def set_file_times(file_path, timestamp):
     finally:
         win32file.CloseHandle(handle)
 
+
 def copy_and_organize_file(file, base_destination_folder):
+    global copy_count
+    global skip_count
     file_name = file.Properties("Item Name").Value if file.Properties.Exists("Item Name") else "Unnamed_Item"
     file_extension = file.Properties("Filename extension").Value if file.Properties.Exists(
         "Filename extension") else "Unknown"
@@ -89,6 +94,7 @@ def copy_and_organize_file(file, base_destination_folder):
     # Skip copying if the file already exists
     if os.path.exists(final_path):
         print(f"Skipping {final_path}: File already exists.")
+        skip_count += 1
         return
 
     # Ensure destination directory exists
@@ -103,6 +109,7 @@ def copy_and_organize_file(file, base_destination_folder):
         timestamp = get_timestamp_minus_offset(file)
         # Set the file's creation and modified times
         set_file_times(final_path, timestamp)
+        copy_count += 1
 
     except Exception as e:
         print(f"Failed to copy {file_name}.{file_extension}: {e}")
