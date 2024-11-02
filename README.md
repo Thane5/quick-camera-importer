@@ -4,6 +4,6 @@
 
 Files are sorted as YYYY/MM/ in the target folder.
 
-![image](https://github.com/user-attachments/assets/95e4576d-bb8a-48ce-8a0d-e5e985658682)
+![image](https://github.com/user-attachments/assets/fcb86764-8943-4910-9e35-82f1ecf43287)
 
 Download the latest version here: https://github.com/Thane5/quick-camera-importer-python/releases/latest
