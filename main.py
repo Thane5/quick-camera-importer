@@ -15,7 +15,7 @@ PROJECT_UI = PROJECT_PATH / "MainWindow.ui"
 
 builder = pygubu.Builder()
 
-# pyinstaller command: pyinstaller --onefile --noconsole --add-data "MainWindow.ui;." --add-data "appicon.ico;." --collect-data sv_ttk --name quickcameraimporter main.py
+# pyinstaller command: pyinstaller --onefile --noconsole --add-data "MainWindow.ui;." --add-data "appicon.ico;." --hiddenimport win32timezone --collect-data sv_ttk --name quickcameraimporter main.py
 #todo: in target folder, save a file with a list of images that were copied
 
 
