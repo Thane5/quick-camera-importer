@@ -1,10 +1,8 @@
-import os
 import win32com.client
 import FileHandler
 
 
 # Define the destination folder where files will be copied
-baseDir = r"C:/tmp"  # Update this path
 currentCameraName = ""
 global currentDevice
 

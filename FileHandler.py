@@ -1,7 +1,5 @@
 ﻿import os
 import time
-import pytz
-from exif import Image
 import pywintypes
 import win32file
 import win32con
