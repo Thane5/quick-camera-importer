@@ -9,7 +9,7 @@
     <property name="iconbitmap">appicon.ico</property>
     <property name="minsize">640|320</property>
     <property name="resizable">both</property>
-    <property name="title" translatable="yes">Hello World App</property>
+    <property name="title" translatable="yes">Quick Camera Importer</property>
     <property name="width">200</property>
     <child>
       <object class="ttk.Frame" id="frame3">
