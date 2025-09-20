@@ -1,6 +1,7 @@
 # Quick Camera Importer
 
-... is a windows program that lets you easily back up files from a digital camera over USB.
+... is a windows program that lets you easily back up files from a digital camera over USB. 
+It uses the Windows Portable Devices (WPD) API to connect to the camera over a virtual file system.
 
 Files are sorted as YYYY/MM/ in the target folder.
 
